@@ -1,40 +1,48 @@
-# まなびツールBOX
+# まなびツールBOX 第2版
 
-生成AIを使って作成した教育ツールをまとめるための、GitHub Pages対応ホームページです。
-HTMLファイル1つで動きます。外部サービスの登録や有料ライブラリは必要ありません。
+生成AIで作った学習・授業支援ツールをまとめるHPです。GitHub Pagesで公開できます。
 
-## まず試す
-`index.html` をダブルクリックし、ブラウザで開いてください。
+## 第2版の改善内容
+- トップページを新しいデザインに変更（パソコン・スマホ対応）
+- キーワード検索、カテゴリ絞り込み、お気に入りを継続
+- 「おすすめ」表示、並び順の切り替え、教員向け・児童向けの目安を追加
+- 授業タイマー、ランダム指名、かけ算チャレンジの3ツールを継続
 
-## GitHub Pages で公開する
-1. GitHub にログインし、右上の `+` → `New repository` を押します。
-2. Repository name を `manabi-toolbox` などに設定します。
-3. `Public` を選び、`Create repository` を押します。無料プランでは原則公開リポジトリでPagesを使います。
-4. `Add file` → `Upload files` から `index.html` をアップロードし、`Commit changes` します。ZIPファイルをそのままアップロードしないでください。
-5. リポジトリの `Settings` → `Pages` を開きます。
-6. `Build and deployment` の `Source` を `Deploy from a branch` にします。
-7. `Branch: main`、フォルダー `/(root)` を選び `Save` します。
-8. 表示されたURLへアクセスします。`https://ユーザー名.github.io/manabi-toolbox/` のようなURLです。
+## GitHub Pagesの更新手順
+1. GitHubの `manabi-toolbox` リポジトリを開きます。
+2. **Add file → Upload files** を選択します。
+3. このZIPを解凍して取り出した **index.html** と **README.md** をアップロードします。ZIPファイル自体はアップロードしません。
+4. 既存ファイルを上書きする変更内容を確認し、**Commit changes** を押します。
+5. **Settings → Pages** の公開URLを開き、反映を確認します。反映に時間がかかる場合は再読み込みしてください。
 
-## 後からツールを追加する
-GitHubの `index.html` を開き鉛筆アイコン（Edit this file）から編集します。
-下部の `const TOOLS = [` を探し、次の1行を末尾の `]` の直前に追加します。
+※ ファイルはリポジトリの最上位（root）に置いてください。既存の index.html を消してから追加する必要はありません。
 
-```js
-,{id:'social1',name:'社会科クイズ',description:'都道府県を楽しく復習できます。',category:'社会',icon:'🗾',external:'https://example.com/'}
+## 新しいツールの追加方法
+`index.html` をGitHub上で開き、鉛筆アイコンで編集します。`const TOOLS = [` を検索します。既存ツールの最後の行の末尾にカンマをつけ、次の1行を加えます。
+
+```javascript
+{id:'kanji01',name:'漢字練習',description:'漢字の読みを楽しく練習しよう。',category:'国語',icon:'✏️',external:'https://example.com/',audience:'児童向け',updated:'2026-11-21',featured:false}
 ```
 
-`https://example.com/` を、ご自身が公開した実際のツールURLに置き換えます。
-既存ツールの最終行の末尾にカンマを付けるか、上の例のように行頭にカンマを付けてください。
-`id` は他のツールと重複しない英数字を指定してください。編集後 `Commit changes` を押すと公開内容が更新されます。
+- `id`：ほかのツールと重複しない英数字
+- `name`：カードに表示する名前
+- `description`：説明文
+- `category`：例「国語」「算数」「社会」「理科」「授業支援」
+- `icon`：絵文字
+- `external`：ツールの公開URL。例のURLは必ず実物に変更してください。
+- `audience`：例「児童向け」「先生向け」
+- `updated`：`YYYY-MM-DD` 形式の日付
+- `featured`：`true` ならおすすめ表示、`false` なら通常表示
 
-## 既にHTMLで作ったAIツールを登録したい場合
-別のリポジトリでGitHub Pagesとして公開し、そのURLを `external` に登録すると管理が簡単です。
-このサイト内のサブフォルダーに直接HTMLを追加してリンクする方法もあります。
+保存には **Commit changes** を使います。公開が反映されれば自動でカードが増えます。
 
-## 注意
-- お気に入り情報は**各端末のブラウザ内だけ**に保存され、他の端末と同期されません。
-- 学習ツールの入力内容はこのサイトから送信しません。ただし外部URLを追加した場合、その外部サイトのデータ取扱いは別です。
-- 児童の氏名、顔写真、成績などの個人情報、秘密のAPIキー・パスワードを公開リポジトリに入れないでください。
-- 学校で利用する場合は学校・教育委員会の情報セキュリティ規程を確認してください。
-- AI APIをブラウザから直接呼ぶ場合、APIキーが公開される構成にしないでください。安全なサーバー側の仕組みが必要です。
+### GitHub内に学習アプリを置く場合
+例えば `apps/kanji/index.html` を追加すると、公開先は通常
+`https://ユーザー名.github.io/manabi-toolbox/apps/kanji/` になります。
+この場合、トップページの `external` に `./apps/kanji/` を指定することもできます。
+
+## 注意点
+- GitHub Pagesの公開リポジトリには、個人情報・秘密情報を置かないでください。
+- お気に入りは端末ごとのブラウザ内保存です。端末間で同期されません。
+- 外部URLがある場合、そのサイト側の利用条件や個人情報の扱いも確認してください。
+- 動作にはJavaScriptを有効にしたブラウザが必要です。
