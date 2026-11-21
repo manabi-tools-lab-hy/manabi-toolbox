@@ -21,10 +21,11 @@
   公開前に、追加するリンクが安全で適切か確認してください。
 */
 const TOOLS = [
- {id:'timer',name:'授業タイマー',description:'活動時間を大きな数字で表示。話し合いや作業時間の管理に便利です。',category:'授業支援',icon:'⏱️',builtIn:'timer'},
+ 
+{id:'kanji1',name:'漢字練習ツール',description:'漢字の読み方や書き方を楽しく練習できます。',category:'国語',icon:'✏️',external:'https://manabi-tools-lab-hy.github.io/manabi-toolbox/'},
  {id:'picker',name:'ランダム指名ツール',description:'出席番号などをランダムに1つ選びます。名前を登録する必要はありません。',category:'授業支援',icon:'🎲',builtIn:'picker'},
  {id:'quiz',name:'かけ算チャレンジ',description:'ランダムに出題される九九の問題にチャレンジ！くり返し練習できます。',category:'算数',icon:'✖️',builtIn:'quiz'}
- // 追加例: ,{id:'social1',name:'社会科クイズ',description:'都道府県の学習に挑戦！',category:'社会',icon:'🗾',external:'https://example.com/'}
+ // 追加例: ,{id:'social1',name:'社会科クイズ',description:'都道府県の学習に挑戦！',category:'社会',icon:'🗾',external:'https://manabi-tools-lab-hy.github.io/manabi-toolbox/'}
 ];
 const $=id=>document.getElementById(id);
 let selected='すべて';const savedKey='manabi-toolbox-favs-v1';let favorites=[];try{const v=JSON.parse(localStorage.getItem(savedKey)||'[]');if(Array.isArray(v))favorites=v.filter(x=>typeof x==='string')}catch(e){}
